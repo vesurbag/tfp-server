@@ -11,7 +11,7 @@ mongoose.connect(config.database);
 
 // On Connection
 mongoose.connection.on('connected', () => {
-    console.log(`Connected to database ${config.database}`)
+    console.log(`Successfully connected to database ${config.database}`)
 })
 
 // On Error
@@ -24,7 +24,7 @@ const app = express();
 const users = require('./routes/users');
 
 // Port Number
-const port = 3000;
+const port = 8080;
 
 // CORS Middleware
 app.use(cors());
@@ -38,7 +38,7 @@ app.use(bodyParser.json());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
-    
+
 require('./config/password')(passport);
 
 app.use('/api/users', users);

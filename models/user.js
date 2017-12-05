@@ -28,11 +28,12 @@ module.exports.getUserById = (id, callback) => {
 }
 
 module.exports.getUserByUsername = (username, callback) => {
-    const query = {username: username};
+    const query = { username: username };
     User.findOne(query, callback);
 }
 
-module.exports.addUser = function(newUser, callback) {
+module.exports.addUser = function (newUser, callback) {
+    console.log(newUser)
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;

@@ -4,18 +4,20 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd C:/MongoDB/",
     "start": "nodemon app"
   },
   "dependencies": {
-    "express": "4.15.3",
-    "mongoose": "4.10.0",
     "bcryptjs": "2.4.3",
-    "cors": "2.8.3",
-    "jsonwebtoken": "7.4.1",
     "body-parser": "1.17.2",
+    "cors": "2.8.3",
+    "express": "4.15.3",
+    "jsonwebtoken": "7.4.1",
+    "mongoose": "4.10.0",
+    "nodemon": "^1.11.0",
     "passport": "0.3.2",
-    "passport-jwt": "2.2.1"
+    "passport-jwt": "2.2.1",
+    "validators": "^0.3.1"
   },
   "author": "vesurbag",
   "license": "ISC"

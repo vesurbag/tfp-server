@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 
 const User = require('../models/user');
+const validate = require('../validators/user')
 
 // Register
 router.post('/register', (req, res, next) => {
@@ -15,19 +16,28 @@ router.post('/register', (req, res, next) => {
         password: req.body.password,
     });
 
-    User.addUser(newUser, (err, user) => {
-        if (err) {
-            res.json({
-                success: false,
-                msg: 'Failed to register user',
-            });
-        } else {
-            res.json({
-                success: true,
-                msg: 'User regitered',
-            });
-        }
-    });
+    if (validate.isValidateUserRegister(newUser)) {
+        User.addUser(newUser, (err, user) => {
+            if (err) {
+                res.json({
+                    success: false,
+                    msg: 'Failed to register user',
+                });
+            } else {
+                res.json({
+                    success: true,
+                    msg: 'User regitered',
+                });
+            }
+        });
+    } else {
+        res.json({
+            success: false,
+            msg: 'Bad data'
+        })
+    }
+
+
 });
 
 // Authenticate
@@ -73,8 +83,8 @@ router.post('/authenticate', (req, res, next) => {
 });
 
 // Profile
-router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    res.json({user: req.user});
+router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    res.json({ user: req.user });
 });
 
 router.get('/all', (req, res) => {
