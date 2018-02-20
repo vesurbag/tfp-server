@@ -63,7 +63,7 @@ router.post("/authenticate", (req, res, next) => {
           success: true,
           token: `JWT ${token}`,
           user: {
-            id: user.publicId,
+            publicId: user.publicId,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email
@@ -84,12 +84,46 @@ router.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
   (req, res, next) => {
-    console.log(res);
     res.json({
       user: req.user
     });
   }
 );
+
+router.get(
+  "/authenticate/check",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      success: true,
+      publicId: req.user.publicId
+    });
+  }
+);
+
+// User for public
+
+router.get("/user/:id", (req, res) => {
+  User.getUserByPublicId(req.params.id, (err, user) => {
+    if (err) throw err;
+    if (!user) {
+      res.json({
+        success: false,
+        msg: "User not found"
+      });
+    } else {
+      res.json({
+        success: true,
+        user: {
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          publicId: user.publicId
+        }
+      });
+    }
+  });
+});
 
 router.get("/all", (req, res) => {
   User.getAllUsers((err, user) => {

@@ -30,6 +30,10 @@ module.exports.getUserById = (id, callback) => {
   User.findById(id, callback);
 };
 
+module.exports.getUserByPublicId = (publicId, callback) => {
+  User.findOne({ publicId }, callback);
+};
+
 module.exports.getUserByEmail = (email, callback) => {
   const query = { email };
   User.findOne(query, callback);
