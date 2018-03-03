@@ -19,6 +19,11 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  registrationComplete: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
 
