@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "key": "minsk",
+    "name": "Минск"
+  },
+  {
+    "id": 2,
+    "key": "brest",
+    "name": "Брест"
+  },
+  {
+    "id": 3,
+    "key": "vitebsk",
+    "name": "Витебск"
+  },
+  {
+    "id": 4,
+    "key": "gomel",
+    "name": "Гомель"
+  },
+  {
+    "id": 5,
+    "key": "grodno",
+    "name": "Гродно"
+  },
+  {
+    "id": 6,
+    "key": "mogilev",
+    "name": "Могилев"
+  }
+]
